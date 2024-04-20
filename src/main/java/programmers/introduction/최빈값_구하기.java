@@ -2,6 +2,10 @@ package programmers.introduction;
 
 public class 최빈값_구하기 {
 
+    public static void main(String[] args) {
+        var solution = new 최빈값_구하기();
+        solution.solution(new int[]{1});
+    }
     static int[] recordArray;
 
     public int solution(int[] array) {
@@ -17,9 +21,9 @@ public class 최빈값_구하기 {
             }
         }
         int duplicateAnswer = 0;
-        for(int i =0; i<array.length; i++) {
+        for(int i =0; i<1001; i++) {
             if(maxCalled==recordArray[i]){
-                answer = array[i];
+                answer = i;
                 duplicateAnswer++;
             }
         }
