@@ -1,4 +1,4 @@
-package programmers;
+package programmers.introduction;
 
 public class 로그인_성공_question {
 

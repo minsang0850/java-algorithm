@@ -1,6 +1,4 @@
-package programmers;
-
-import java.util.List;
+package programmers.introduction;
 
 public class 캐릭터의좌표 {
 
