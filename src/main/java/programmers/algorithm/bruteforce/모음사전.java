@@ -10,9 +10,8 @@ public class 모음사전 {
         p.solution("");
     }
     public int solution(String word) {
-        String chars = "AEIOU";
         var set = new HashSet<String>();
-        permute(set, "", chars);
+        permute(set, "");
         var list = new ArrayList<>(set);
         Collections.sort(list);
         for (int i=0; i<list.size(); i++) {
@@ -23,15 +22,15 @@ public class 모음사전 {
         return 0;
     }
 
-    private void permute(HashSet<String> set, String prefix, String chars) {
+    private void permute(HashSet<String> set, String prefix) {
         if(prefix.length()!=0){
             set.add(prefix);
         }
         if(prefix.length()>=5){
             return;
         }
-        for (int i=0; i<chars.length(); i++){
-            permute(set, prefix+chars.charAt(i), chars.substring(0, i) + chars.substring(i, chars.length()));
+        for (int i=0; i<5; i++){
+            permute(set, prefix+"AEIOU".charAt(i));
         }
     }
 }
