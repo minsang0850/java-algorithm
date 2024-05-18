@@ -2,22 +2,35 @@ package hackerrank;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Climbing_the_leaderboard {
     public static void main(String[] args) {
+        var list = new ArrayList<>(List.of(100,100, 100, 50, 40, 40, 20, 10));
+        removeDuplicate(list);
         Climbing_the_leaderboard.climbingLeaderboard(new ArrayList<>(List.of(100, 100, 50, 40, 40, 20, 10))
                 , new ArrayList<>(List.of(5, 25, 50, 120)));
 
-        var answer = search(new ArrayList<>(List.of(95, 90, 70, 50, 30, 10)), 5, 0, 5);
         return;
     }
     public static List<Integer> climbingLeaderboard(List<Integer> ranked, List<Integer> player) {
-        removeDuplicate(ranked);
-        var answer = new ArrayList<Integer>();
-        for (int i = 0; i < player.size(); i++) {
-            answer.add(search(ranked, player.get(i), 0, ranked.size() - 1));
+        ranked = ranked.stream().distinct().collect(Collectors.toList());
+        var answers = new ArrayList<Integer>();
+        int n = ranked.size();
+        int m = player.size();
+        var idx = n-1;
+        for (int i=0; i<m; i++) {
+            var score = player.get(i);
+            while (idx>=0 && score>=ranked.get(idx)) {
+                idx--;
+            }
+            if(idx<0){
+                answers.add(1);
+            } else {
+                answers.add(idx+2);
+            }
         }
-        return answer;
+        return answers;
     }
 
     private static void removeDuplicate(List<Integer> ranked) {
@@ -32,25 +45,4 @@ public class Climbing_the_leaderboard {
         }
     }
 
-    private static int search(List<Integer> ranked, int score, int start, int end) {
-        var mid = (start + end) / 2;
-        if(0<=mid && mid<ranked.size()-1){
-            if(ranked.get(mid)>score && ranked.get(mid+1)<score){
-                return mid+2;
-            }
-        }
-        if (ranked.get(mid) == score) {
-            return mid + 1;
-        } else if (ranked.get(mid) < score) {
-            if (mid == 0) {
-                return 1;
-            }
-            return search(ranked, score, start, mid - 1);
-        } else {
-            if (mid == ranked.size() - 1) {
-                return mid + 2;
-            }
-            return search(ranked, score, mid + 1, end);
-        }
-    }
 }
