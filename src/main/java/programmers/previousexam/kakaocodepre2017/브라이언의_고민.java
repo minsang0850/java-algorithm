@@ -6,10 +6,14 @@ import java.util.List;
 public class 브라이언의_고민 {
     public static void main(String[] args) {
         var p = new 브라이언의_고민();
-        var answer= p.solution("SpIpGpOpNpGJqOqA");
-        return;
+//        p.solution("SpIpGpOpNpGJqOqA");
+        var answer = p.solution("HaEaLaLObWORLDb");
+        System.out.println(answer);
     }
-    List<String> usedMarks = new ArrayList<String>();
+
+
+
+    List<String> usedMarks = new ArrayList<>();
     public String solution(String sentence) {
         var sb = new StringBuilder();
         for (int i = 0; i < sentence.length(); i++) {
@@ -65,23 +69,24 @@ public class 브라이언의_고민 {
 
 
 
-            else {
+            else { // 앞뒤에 뭐가 없음
                 char specialMark = '~';
                 if (i + 1 < sentence.length()) {
                     specialMark = sentence.charAt(i + 1);
                 }
                 int k = i;
                 if (!isSpecial(specialMark)) {
+                    // 규칙 없이 원래 문자 (길이가 2 이상이라는 전제)
                     while (k < sentence.length() && !isSpecial(sentence.charAt(k))) {
                         sb.append(sentence.charAt(k));
                         k++;
                     }
-                    i = k - 1;
                 }
                 else {
                     if(isUsed(specialMark)){
                         return "invalid";
                     }
+
                     for (; k < sentence.length(); k++) {
                         //홀수번째
                         if ((k - i) % 2 == 1) {
@@ -96,8 +101,8 @@ public class 브라이언의_고민 {
                             sb.append(sentence.charAt(k));
                         }
                     }
-                    i = k - 1;
                 }
+                i = k - 1;
             }
         }
         return sb.toString();
