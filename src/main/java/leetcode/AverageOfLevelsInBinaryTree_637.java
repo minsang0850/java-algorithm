@@ -9,10 +9,6 @@ public class AverageOfLevelsInBinaryTree_637 {
         var count = new ArrayList<Integer>();
         averageOfLevels(root, 0, sum, count);
         var answer = new ArrayList<Double>();
-//        var list = new ArrayList<Integer>();
-//        list.add(answer.size());
-//        list.add(sum.size());
-//        list.add(count.size());
         for (int i = 0; i < sum.size(); i++) {
             answer.add(i, sum.get(i)/(double)count.get(i));
         }
