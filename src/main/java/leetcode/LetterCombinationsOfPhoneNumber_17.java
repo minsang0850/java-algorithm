@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class Letter_combinations_of_a_phone_number {
+public class LetterCombinationsOfPhoneNumber_17 {
     public List<String> letterCombinations(String digits) {
         if(digits.length()==0) {
             return List.of();
